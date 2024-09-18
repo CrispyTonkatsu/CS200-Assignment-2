@@ -27,6 +27,7 @@
               extra-cmake-modules
               cmakeCurses 
               clang-tools
+              clang
           ];
 
           buildInputs = with pkgs; [
