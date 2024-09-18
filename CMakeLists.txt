@@ -41,5 +41,5 @@ endif()
 find_package(OpenGL REQUIRED)
 
 # TODO: make sure to update this to reflect the files
-add_executable(MeshTest Mesh.cpp Affine.cpp)
-target_link_libraries(AffineTest OpenGL glm::glm GLEW SDL2)
+add_executable(MeshTest MyMeshTest.cpp Affine.cpp)
+target_link_libraries(MeshTest OpenGL glm::glm GLEW SDL2)
