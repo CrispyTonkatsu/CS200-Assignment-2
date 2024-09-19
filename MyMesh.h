@@ -9,9 +9,9 @@
 #pragma once
 
 #include <cstdlib>
-#include <glm/fwd.hpp>
 #include <vector>
 #include "Mesh.h"
+#include "Affine.h"
 
 namespace cs200 {
   class MyMesh final : public cs200::Mesh {
