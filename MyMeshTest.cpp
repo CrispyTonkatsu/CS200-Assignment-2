@@ -201,7 +201,7 @@ void Client::resize(int W, int H) {
 //
 /////////////////////////////////////////////////////////////////
 
-int main(int argc, char *argv[]) {
+int main(int , char *[]) {
 
   // SDL: initialize and create a window
   SDL_Init(SDL_INIT_VIDEO);

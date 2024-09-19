@@ -16,7 +16,7 @@
 namespace cs200 {
   class MyMesh final : public cs200::Mesh {
   public:
-    MyMesh() = default;
+    MyMesh();
 
     // Vertex Functions
     int vertexCount() const override;
