@@ -15,7 +15,7 @@ namespace cs200 {
   vertices.emplace_back(30.f,30.f,30.f,30.f);
   vertices.emplace_back(-30.f,30.f,30.f,30.f);
   vertices.emplace_back(-30.f,-30.f,30.f,30.f);
-  vertices.emplace_back(0.f,0.f,0.f,0.f);
+  vertices.emplace_back(30.f,-30.f,30.f,30.f);
 
   edges.emplace_back(0,1);
   edges.emplace_back(1,2);
@@ -23,7 +23,7 @@ namespace cs200 {
   edges.emplace_back(3,0);
 
   faces.emplace_back(0,1,2);
-  faces.emplace_back(3,1,2);
+  faces.emplace_back(0,2,3);
 }
 
   int MyMesh::vertexCount() const { return static_cast<int>(vertices.size()); }
@@ -36,7 +36,7 @@ namespace cs200 {
   const MyMesh::Face *MyMesh::faceArray() const { return &faces[0]; }
 
 // TODO: Give the correct center
-  glm::vec4 MyMesh::dimensions() const { return vector(30.f, 30.f); }
-  glm::vec4 MyMesh::center() const { return point(0, 15); }
+  glm::vec4 MyMesh::dimensions() const { return vector(10.f, 10.f); }
+  glm::vec4 MyMesh::center() const { return point(0, 1); }
 
 } // namespace cs200
