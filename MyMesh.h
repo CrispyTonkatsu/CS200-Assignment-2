@@ -8,7 +8,9 @@
 
 #pragma once
 
+#include <array>
 #include <cstdlib>
+#include <glm/fwd.hpp>
 #include <vector>
 #include "Mesh.h"
 
@@ -17,10 +19,25 @@ namespace cs200 {
   public:
     MyMesh() = default;
 
-  private:
-  std::vector<glm::vec4> vertices{};
-  std::vector<Edge> edges{};
-  std::vector<Face> faces{};
+    // Vertex Functions
+    int vertexCount() const override;
+    const glm::vec4 *vertexArray() const override;
 
+    // Edge Functions
+    int edgeCount() const override;
+    const Edge *edgeArray() const override;
+
+    // Face Functions
+    int faceCount() const override;
+    const Face *faceArray() const override;
+
+    // Dimension functions
+    glm::vec4 dimensions() const override;
+    glm::vec4 center() const override;
+
+  private:
+    std::vector<glm::vec4> vertices;
+    std::vector<Edge> edges;
+    std::vector<Face> faces;
   };
 } // namespace cs200
