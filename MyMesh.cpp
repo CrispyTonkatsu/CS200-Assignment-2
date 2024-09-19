@@ -12,25 +12,29 @@
 
 namespace cs200 {
   MyMesh::MyMesh() {
-    std::array<glm::vec4, 3> triangle = {
-        glm::vec4(1, 0, 0, 1),
-        glm::vec4(-1, 1, 0, 1),
-        glm::vec4(-1, -1, 0, 1),
-    };
+    // Defining some variables
+    const int peak_count = 5; // How many peaks the star will have
+    const float core_width = 2.f; // How thick the core is supposed to be
 
-    for (int i = 0; i < 3; i++) {
-      glm::mat4 rotation = rotate(i );
+    // Adding the origin to the list
+    vertices.emplace_back(center());
 
-      vertices.push_back(rotation * triangle[0]);
-      vertices.push_back(rotation * triangle[1]);
-      vertices.push_back(rotation * triangle[2]);
+    glm::mat4 translation = translate(glm::vec4(core_width, 0, 0, 1));
 
-      edges.emplace_back(i, i + 1);
-      edges.emplace_back(i + 1, i + 2);
-      edges.emplace_back(i, i + 2);
+    for (int i = 1; i < peak_count + 1; i++) {
+      glm::mat4 rotation = rotate(i * (360 / peak_count));
 
-      faces.emplace_back(i, i + 1, i + 2);
+      vertices.emplace_back(rotation * translation * glm::vec4(1, 1, 0, 1));
+
+      edges.emplace_back(0, i);
+      edges.emplace_back(i - 1, i);
+
+      faces.emplace_back(0, i, i + 1);
     }
+
+    // Adding the last face
+    edges.emplace_back(1, peak_count);
+    faces.emplace_back(0, 1, peak_count);
   }
 
   int MyMesh::vertexCount() const { return static_cast<int>(vertices.size()); }
@@ -43,7 +47,7 @@ namespace cs200 {
   const MyMesh::Face *MyMesh::faceArray() const { return &faces[0]; }
 
   // TODO: Give the correct center
-  glm::vec4 MyMesh::dimensions() const { return vector(2.f, 2.f); }
+  glm::vec4 MyMesh::dimensions() const { return vector(10.f, 10.f); }
   glm::vec4 MyMesh::center() const { return point(0, 0); }
 
 } // namespace cs200
