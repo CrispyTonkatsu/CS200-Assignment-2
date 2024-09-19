@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include <array>
 #include <cstdlib>
 #include <glm/fwd.hpp>
 #include <vector>
