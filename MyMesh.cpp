@@ -7,27 +7,29 @@
  */
 
 #include "MyMesh.h"
-#include <array>
+#include <glm/fwd.hpp>
 #include "Affine.h"
 
 namespace cs200 {
   MyMesh::MyMesh() {
-    // Defining some variables
-    const int peak_count = 5; // How many peaks the star will have
-    const float core_width = 2.f; // How thick the core is supposed to be
+    // How many peaks the star will have (3 < count < 30)
+    const int peak_count = 4;
+    // How thick the core is supposed to be (Distortable for nice effects)
+    const glm::mat4 core_width = translate(glm::vec4(5.f, 0, 0, 1));
+    // How far the spikes are supposed to be (Distortable for nice effects)
+    const glm::mat4 peak_distance = translate(glm::vec4(10.f, 0, 0, 1));
 
     // Adding the origin to the list
     vertices.emplace_back(center());
 
-    glm::mat4 translation = translate(glm::vec4(core_width, 0, 0, 1));
-
+    // Creating the core of the star
     for (int i = 1; i < peak_count + 1; i++) {
       glm::mat4 rotation = rotate(i * (360 / peak_count));
 
-      vertices.emplace_back(rotation * translation * glm::vec4(1, 1, 0, 1));
+      vertices.emplace_back(rotation * core_width * glm::vec4(0, 0, 0, 1));
 
       edges.emplace_back(0, i);
-      edges.emplace_back(i - 1, i);
+      if (i != 1) edges.emplace_back(i - 1, i);
 
       faces.emplace_back(0, i, i + 1);
     }
