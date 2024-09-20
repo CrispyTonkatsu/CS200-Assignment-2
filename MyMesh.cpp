@@ -74,7 +74,6 @@ namespace cs200 {
   int MyMesh::faceCount() const { return static_cast<int>(faces.size()); }
   const MyMesh::Face *MyMesh::faceArray() const { return &faces[0]; }
 
-  // TODO: Give the correct center
   glm::vec4 MyMesh::dimensions() const { return vector(peak_distance * 2, peak_distance * 2); }
   glm::vec4 MyMesh::center() const { return point(0, 0); }
 
