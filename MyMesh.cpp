@@ -18,6 +18,9 @@ const glm::vec4 peak_location = glm::vec4(peak_distance, 0, 0, 1);
 // The "radius" of the core
 static constexpr float core_width = 2.f;
 const glm::vec4 core_location = cs200::rotate(spacing_angle / 2) * glm::vec4(core_width, 0, 0, 1);
+// Whether to display specific edges
+const bool inner_edges = false;
+const bool outer_edges = true;
 
 namespace cs200 {
   MyMesh::MyMesh() {
@@ -30,14 +33,15 @@ namespace cs200 {
 
       vertices.emplace_back(rotation * core_location);
 
-      edges.emplace_back(0, i);
-      if (i != 1) edges.emplace_back(i - 1, i);
+      if (inner_edges) edges.emplace_back(0, i);
+
+      if (i != 1 && inner_edges) edges.emplace_back(i - 1, i);
 
       faces.emplace_back(0, i, i + 1);
     }
 
     // Adding the last edge and face
-    edges.emplace_back(1, peak_count);
+    if (inner_edges) edges.emplace_back(1, peak_count);
     faces.emplace_back(0, 1, peak_count);
 
     // Adding the peak vertices
@@ -48,14 +52,16 @@ namespace cs200 {
 
       unsigned adjusted_index = peak_count + i;
 
-      if (i != 1) edges.emplace_back(i - 1, adjusted_index);
-      edges.emplace_back(i, adjusted_index);
+      if (outer_edges) {
+        if (i != 1) edges.emplace_back(i - 1, adjusted_index);
+        edges.emplace_back(i, adjusted_index);
+      }
 
       if (i != 1) faces.emplace_back(adjusted_index, i, i - 1);
     }
 
     // Adding the last edge and face
-    edges.emplace_back(peak_count, peak_count + 1);
+    if (outer_edges) edges.emplace_back(peak_count, peak_count + 1);
     faces.emplace_back(1, peak_count, peak_count + 1);
   }
 
