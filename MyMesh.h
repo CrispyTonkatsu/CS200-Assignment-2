@@ -37,5 +37,6 @@ namespace cs200 {
     std::vector<glm::vec4> vertices;
     std::vector<Edge> edges;
     std::vector<Face> faces;
+
   };
 } // namespace cs200
