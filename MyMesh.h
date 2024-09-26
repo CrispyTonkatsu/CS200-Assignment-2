@@ -1,7 +1,7 @@
 /**
  * File: MyMesh.hpp
  * Name: Edgar Jose Donoso Mansilla (e.donosomansilla)
- * Assignment: 1
+ * Assignment: 2
  * Course: CS200
  * Term: FALL24
  */

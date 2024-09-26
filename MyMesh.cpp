@@ -1,12 +1,11 @@
 /**
- * File: MyMesh.hpp
+ * File: MyMesh.cpp
  * Name: Edgar Jose Donoso Mansilla (e.donosomansilla)
- * Assignment: 1
+ * Assignment: 2
  * Course: CS200
  * Term: FALL24
  */
 
-#include "MyMesh.h"
 #include "Affine.h"
 
 // How many peaks the star will have, any
